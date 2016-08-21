@@ -1,11 +1,65 @@
-
+<div class="row">  
+  <h3>My Board</h3>
+  <table class="table table-bordered">
+    <thead>
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+      <th>E</th>
+      <th>F</th>
+      <th>G</th>
+      <th>H</th>
+      <th>I</th>
+      <th>J</th>
+    </thead>
+    <tbody>
+      
+      <% (1..10).each do |r| %>
+        <tr>
+          <td><%= r %></td>
+          <% ("A".."J").each do |c| %>
+            <td data-behavior="cell" data-shot-url="<%= take_shot_path(c+r.to_s) %>" data-cell=<%= "#{c}#{r}" %>></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <hr>
 
-<%= link_to "Back", games_path %>
+<div class="row">
+  <h3>My Ships</h3>
+  <table class="table">
+    <thead>
+      <th>type</th>
+      <th>cells</th>
+      <th>status</th>
+    </thead>
+    <tbody>
+      <% current_player.board.ships.each do |ship| %>
+        <tr>
+          <td><%= ship.shiptype %></td>
+          <td>
+            <% eval(ship.cells).each do |cell| %>
+              <%= cell[1][:cell].blank? ? "not placed" : cell[1][:cell] %>
+            <% end %>
+          </td>
+          <td><%= ship.status %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
-<%= link_to "Quit!", quit_game_path, method: :put %>
+<div class="row">
 
-<hr>
+  <hr>
+  <%= link_to "Back", games_path %>
+  <%= link_to "Quit!", quit_game_path, method: :put %>
+  
+</div>
 
-<%= @params.inspect %>
+
