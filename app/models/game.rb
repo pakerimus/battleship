@@ -43,7 +43,21 @@ class Game < ActiveRecord::Base
   end
 
   def finish!(player_number)
-    self.update(status: "Finished! #{player_number} won!", current_player: nil)
+    self.update(status: "Finished! Player #{player_number} won!", current_player: nil)
+  end
+
+  def quit!(player_number)
+    self.update(status: "Player #{player_number} quit!", current_player: nil)
+  end
+
+  def playable?
+    self.status == "placing" || self.status == "playing"
+  end
+
+  def take_shot(player_number, cell)
+    return "error" if player_number.blank? || cell.blank?
+    player = self.players.find_by_player_number player_number
+    player.board.check_shot(cell)
   end
 
 end

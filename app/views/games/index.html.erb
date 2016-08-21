@@ -1,0 +1,11 @@
+Game status: <%= @game.status %>
+
+<hr>
+
+<% if @game.playable? %>
+  <%= link_to "Play as 1", player_games_path(1) %>
+  <hr>
+  <%= link_to "Play as 2", player_games_path(2) %>
+<% else %>
+  <%= link_to "Start game", new_game_path, method: :put %>
+<% end %>
