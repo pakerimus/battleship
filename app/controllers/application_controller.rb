@@ -7,4 +7,9 @@ class ApplicationController < ActionController::Base
   def get_game
     @game = Game.first
   end
+
+  def current_player
+    @current_player ||= Player.find_by_player_number session[:player]
+  end
+  helper_method :current_player
 end
