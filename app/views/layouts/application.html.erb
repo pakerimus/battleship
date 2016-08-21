@@ -6,13 +6,21 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="content">
 <% flash.each do |flash_type, message| %>
   <%= message %>
 <% end %>
 <hr>
-
-<%= yield %>
-
+  <div class="wrapper">
+    <div class="content">
+      <div class="container">
+        <%= yield %>
+        <hr>
+        <%= @game.current_player %>
+        <%= session[:player] %>
+        <%= @params.inspect %>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

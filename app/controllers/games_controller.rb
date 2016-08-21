@@ -6,6 +6,7 @@ class GamesController < ApplicationController
   end
 
   def player
+    redirect_to waiting_path unless @game.current_player == session[:player]
     @params = params
   end
 
@@ -38,7 +39,7 @@ class GamesController < ApplicationController
 
   def set_player
     if params[:player_number].present? && @game.playable?
-      session[:player] = params[:player_number]
+      session[:player] ||= params[:player_number]
     else
       redirect_to games_path
     end

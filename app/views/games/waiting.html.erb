@@ -1,1 +1,3 @@
-waiting turn!
+Player <%= session[:player] %> waiting turn!
+
+<%= link_to "Check game", player_games_path(session[:player]) %>
