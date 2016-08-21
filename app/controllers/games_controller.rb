@@ -6,7 +6,7 @@ class GamesController < ApplicationController
   end
 
   def player
-    redirect_to waiting_path unless @game.current_player == session[:player]
+    #redirect_to waiting_path unless @game.current_player == session[:player]
     @params = params
   end
 
