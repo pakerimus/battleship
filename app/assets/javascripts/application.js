@@ -15,5 +15,6 @@
 
 //= require bootstrap-sprockets
 
+//= require battleship
+
 //= require turbolinks
-// require_tree .
